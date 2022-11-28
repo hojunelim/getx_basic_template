@@ -37,6 +37,7 @@ dependencies:
   get: ^4.6.5
   hive_flutter: ^1.1.0
   flutter_layout_grid: ^2.0.1
+  flutter_native_splash: ^2.2.15
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,8 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

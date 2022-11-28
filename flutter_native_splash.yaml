@@ -1,0 +1,15 @@
+# flutter_native_splash-development.yaml
+flutter_native_splash:
+  image: assets/images/logo-company.png
+  #branding: assets/images/branding-company.png
+  background_image: assets/images/back-company.png
+
+  android_12:
+    color: "#ffffff"
+    # The image parameter sets the splash screen icon image.  If this parameter is not specified,
+
+  web: false
+
+  #수정후 아래코드 실행
+  #flutter pub run flutter_native_splash:remove
+  #flutter pub run flutter_native_splash:create
