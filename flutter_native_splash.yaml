@@ -5,11 +5,34 @@ flutter_native_splash:
   background_image: assets/images/back-company.png
 
   android_12:
-    color: "#ffffff"
+    color: "#FFFFFF"
     # The image parameter sets the splash screen icon image.  If this parameter is not specified,
 
   web: false
 
+  #설정
+  #android/app/src/main/AndroidManifest.xml
+  # <activity
+  #       android:name=".MainActivity"
+  #       ...>
+  #       ...
+  #       <!-- Displays an Android View that continues showing the launch screen
+  #           Drawable until Flutter paints its first frame, then this splash
+  #           screen fades out. A splash screen is useful to avoid any visual
+  #           gap between the end of Android's launch screen and the painting of
+  #           Flutter's first frame. -->
+  #       <meta-data
+  #         android:name="io.flutter.embedding.android.SplashScreenDrawable"
+  #         android:resource="@drawable/launch_background"
+  #         />
+  #       <intent-filter>
+  #           ...
+  #       </intent-filter>
+  #   </activity>
+
+  #최초 실행
+  #flutter pub run flutter_native_splash:create --path=flutter_native_splash.yaml
+  
   #수정후 아래코드 실행
   #flutter pub run flutter_native_splash:remove
   #flutter pub run flutter_native_splash:create

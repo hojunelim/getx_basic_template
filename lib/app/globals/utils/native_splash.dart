@@ -3,7 +3,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 class NativeSplash {
   static void splashInit() {
-    WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+    WidgetsBinding widgetsBinding =
+        WidgetsFlutterBinding.ensureInitialized(); //생명주기 리턴 받기
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   }
 
