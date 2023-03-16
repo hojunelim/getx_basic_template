@@ -18,19 +18,21 @@ class AdMobBanner extends StatelessWidget {
   final String adUnitId;
 
   final Rx<BannerAd?> bannerAd = null.obs;
+  final status = ''.obs;
 
   @override
   Widget build(BuildContext context) {
-    if (GetPlatform.isAndroid || GetPlatform.isIOS) {
-      return getBanner();
-    } else {
-      return const Text('ad');
-    }
+    return Column(children: [
+      Obx(() => Text("Status: ${status.value}")),
+      (GetPlatform.isAndroid || GetPlatform.isIOS)
+          ? getBanner()
+          : const Text('ad'),
+      const Text('admob bottom'),
+    ]);
   }
 
   getBanner() {
     AdSize adSize = bannerSize();
-
     bannerAdInit(adSize);
     return Obx(() => bannerAd.value != null
         ? AdWidget(
@@ -62,15 +64,18 @@ class AdMobBanner extends StatelessWidget {
   }
 
   bannerAdInit(bannerSize) async {
+    status.value = 'init';
     BannerAd(
             size: bannerSize,
             adUnitId: adUnitId,
             listener: BannerAdListener(
               onAdLoaded: (ad) {
                 print('ad loaded');
+                status.value = 'loaded';
                 bannerAd.value = ad as BannerAd;
               },
               onAdFailedToLoad: (ad, error) {
+                status.value = 'failed';
                 print('ad loading failed');
                 print(error);
                 ad.dispose();

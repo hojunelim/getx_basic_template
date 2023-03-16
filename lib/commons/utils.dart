@@ -1,10 +1,20 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path_provider/path_provider.dart';
 
 class Utils {
+  static randomMapKey(Map map) {
+    var keys = map.keys.toList();
+    return keys[Random().nextInt(keys.length)];
+  }
+
+  static randomListKey(List list) {
+    return list[Random().nextInt(list.length)];
+  }
+
   static Color colorBrightness(Color color, int brightness) {
     if (brightness > 0) {
       return lighten(color, brightness);

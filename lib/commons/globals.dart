@@ -43,10 +43,26 @@ class Globals extends GetxService {
     //'dellGenoa': FlexScheme.dellGenoa,
   };
 
-  final Map<String, String> adMobKeys = {
+  Map<String, String> get adMobKeys {
+    if (GetPlatform.isAndroid) {
+      return adMobKeysAndroid;
+    } else if (GetPlatform.isIOS) {
+      return adMobKeysIos;
+    } else {
+      return {};
+    }
+  }
+
+  final Map<String, String> adMobKeysAndroid = {
     'BannerAd': 'ca-app-pub-3940256099942544/6300978111',
     'NativeAd': 'ca-app-pub-3940256099942544/2247696110',
     'InterstitialAd': 'ca-app-pub-3940256099942544/1033173712',
+  };
+
+  final Map<String, String> adMobKeysIos = {
+    'BannerAd': 'ca-app-pub-3940256099942544/2934735716',
+    'NativeAd': 'ca-app-pub-3940256099942544/2247696110',
+    'InterstitialAd': 'ca-app-pub-3940256099942544/4411468910',
   };
 
   final RxInt _language = 0.obs;
