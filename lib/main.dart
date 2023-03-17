@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'commons/app_pages.dart';
 import 'commons/app_themes.dart';
@@ -8,7 +9,6 @@ import 'commons/app_translations.dart';
 import 'commons/globals.dart';
 import 'commons/gstg_ctrl.dart';
 import 'pages/home/home.dart';
-import 'commons/ad_controller.dart';
 
 void main() async {
   await initService();
@@ -38,7 +38,10 @@ Future initService() async {
   await Get.putAsync<GstgCtrl>(() => GstgCtrl().init());
   await Get.putAsync<Globals>(() => Globals().init());
 
-  Get.put(AdController());
+  if (GetPlatform.isAndroid || GetPlatform.isIOS) {
+    MobileAds.instance.initialize();
+    //애드몹 초기화
+  }
 
   if (GetPlatform.isAndroid) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,

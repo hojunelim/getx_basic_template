@@ -1,12 +1,45 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:get/get.dart';
+import 'app_translations.dart';
 import 'gstg_ctrl.dart';
 
 class Globals extends GetxService {
   //Globals get to => Get.find();
-  final appName = 'superlab';
+  final appName = 'SuperLab';
   final appTitle = 'superlab';
   final db = Get.find<GstgCtrl>();
+  final _language = 'en_US'.obs;
+  final RxInt _theme = 0.obs;
+  final RxString _concept = 'espresso'.obs;
+
+  //getters
+  String get language => _language.value;
+  int get theme => _theme.value;
+  String get concept => _concept.value;
+  get languageList => AppTranslations.languageCodes;
+
+  Map<String, String> get adMobKeys {
+    if (GetPlatform.isAndroid) {
+      return adMobKeysAndroid;
+    } else if (GetPlatform.isIOS) {
+      return adMobKeysIos;
+    } else {
+      return {};
+    }
+  }
+
+  final Map<String, String> adMobKeysAndroid = {
+    'BannerAd': 'ca-app-pub-3940256099942544/6300978111',
+    'NativeAd': 'ca-app-pub-3940256099942544/2247696110',
+    'InterstitialAd': 'ca-app-pub-3940256099942544/1033173712',
+  };
+
+  final Map<String, String> adMobKeysIos = {
+    'BannerAd': 'ca-app-pub-3940256099942544/2934735716',
+    'NativeAd': 'ca-app-pub-3940256099942544/2247696110',
+    'InterstitialAd': 'ca-app-pub-3940256099942544/4411468910',
+  };
+
   final Map<String, FlexScheme> conceptList = {
     'blue': FlexScheme.blue,
     'indigo': FlexScheme.indigo,
@@ -43,41 +76,12 @@ class Globals extends GetxService {
     //'dellGenoa': FlexScheme.dellGenoa,
   };
 
-  Map<String, String> get adMobKeys {
-    if (GetPlatform.isAndroid) {
-      return adMobKeysAndroid;
-    } else if (GetPlatform.isIOS) {
-      return adMobKeysIos;
-    } else {
-      return {};
-    }
-  }
-
-  final Map<String, String> adMobKeysAndroid = {
-    'BannerAd': 'ca-app-pub-3940256099942544/6300978111',
-    'NativeAd': 'ca-app-pub-3940256099942544/2247696110',
-    'InterstitialAd': 'ca-app-pub-3940256099942544/1033173712',
-  };
-
-  final Map<String, String> adMobKeysIos = {
-    'BannerAd': 'ca-app-pub-3940256099942544/2934735716',
-    'NativeAd': 'ca-app-pub-3940256099942544/2247696110',
-    'InterstitialAd': 'ca-app-pub-3940256099942544/4411468910',
-  };
-
-  final RxInt _language = 0.obs;
-  final RxInt _theme = 0.obs;
-  final RxString _concept = 'espresso'.obs;
-
-  //getters
-  int get language => _language.value;
-  int get theme => _theme.value;
-  String get concept => _concept.value;
-
   setAttr(String key, value) {
     switch (key) {
       case 'language':
         _language.value = value;
+        Get.updateLocale(AppTranslations.locale(value));
+
         break;
       case 'theme':
         _theme.value = value;

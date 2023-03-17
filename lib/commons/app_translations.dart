@@ -8,35 +8,27 @@ import '../lang/lang_zh.dart';
 
 class AppTranslations extends Translations {
   static get languageCodes {
-    return [
-      ['en_US', 'ENG', enUS],
-      ['fr_FR', 'FRA', frFR],
-      ['ko_KR', '한국', koKR],
-      ['ja_JP', '日本', jaJP],
-      ['zh_CN', '中文', zhCN],
-    ];
+    return {
+      'en_US': {'name': 'ENG', 'data': enUS},
+      'fr_FR': {'name': 'FRA', 'data': frFR},
+      'ko_KR': {'name': '한국', 'data': koKR},
+      'ja_JP': {'name': '日本', 'data': jaJP},
+      'zh_CN': {'name': '中文', 'data': zhCN},
+    };
   }
 
-  static Locale locale(index) {
-    List langcode = languageCodes[index][0].split('_');
+  static Locale locale(String key) {
+    List langcode = key.split('_');
     return Locale(langcode[0], langcode[1]);
   }
 
   static Locale get fallbackLocale => const Locale('en', 'Us');
 
-  static List<String> get languages {
-    List<String> langs = [];
-    languageCodes.forEach((element) {
-      langs.add(element[1]);
-    });
-    return langs;
-  }
-
   @override
   Map<String, Map<String, String>> get keys {
     Map<String, Map<String, String>> codes = {};
-    languageCodes.forEach((element) {
-      codes[element[0]] = element[2];
+    languageCodes.forEach((key, value) {
+      codes[key] = value['data'];
     });
     return codes;
   }

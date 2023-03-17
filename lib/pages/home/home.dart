@@ -35,22 +35,37 @@ class Home extends StatelessWidget {
             },
           ),
         ],
-        child: Card(
-          color: context.theme.colorScheme.primary,
-          child: Column(
-            children: [
-              Expanded(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: AdMobBanner(
-                    adUnitId: G.adMobKeys['BannerAd'].toString(),
-                    size: 'BANNER',
-                  ),
-                ),
+        child: Column(
+          children: [
+            Card(
+              child: AdMobBanner(
+                adUnitId: G.adMobKeys['BannerAd'].toString(),
+                size: 'BANNER',
               ),
-            ],
-          ),
+            ),
+            Card(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Text("Language: "),
+                  DropdownButton<String>(
+                    value: G.language,
+                    onChanged: (String? value) {
+                      G.setAttr('language', value);
+                    },
+                    items: G.languageList.keys
+                        .map<DropdownMenuItem<String>>((String key) {
+                      return DropdownMenuItem<String>(
+                        value: key,
+                        child: Text(G.languageList[key]['name']),
+                      );
+                    }).toList(),
+                  ),
+                  Text('Hello'.trArgs()),
+                ],
+              ),
+            ),
+          ],
         ));
   }
 }
