@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import 'commons/ad_service.dart';
 import 'commons/app_pages.dart';
 import 'commons/app_themes.dart';
 import 'commons/app_translations.dart';
 import 'commons/globals.dart';
-import 'commons/gstg_ctrl.dart';
+import 'commons/stg_ctrl.dart';
 import 'pages/home/home.dart';
 
 void main() async {
@@ -35,12 +35,12 @@ Future initService() async {
   //이렇게 하지 않으면 runApp 메소드가 호출되기 전에 위젯이 렌더링되는 경우가 있습니다.
   //이렇게 하면 위젯이 렌더링되기 전에 Flutter 엔진이 초기화되어 있습니다.
 
-  await Get.putAsync<GstgCtrl>(() => GstgCtrl().init());
+  await Get.putAsync<StgCtrl>(() => StgCtrl().init());
   await Get.putAsync<Globals>(() => Globals().init());
 
   if (GetPlatform.isAndroid || GetPlatform.isIOS) {
-    MobileAds.instance.initialize();
     //애드몹 초기화
+    Get.put(AdService());
   }
 
   if (GetPlatform.isAndroid) {

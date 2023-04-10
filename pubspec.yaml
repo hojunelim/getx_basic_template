@@ -39,6 +39,10 @@ dependencies:
   flex_color_scheme: ^6.1.2
   get_storage: ^2.1.1
   package_info_plus: ^3.0.3
+  shared_preferences: ^2.0.18
+  flutter_bounce: ^1.1.0
+  google_fonts: ^4.0.3
+  lottie: ^2.3.2
 
 dev_dependencies:
   flutter_test:

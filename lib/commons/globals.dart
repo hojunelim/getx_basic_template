@@ -1,16 +1,16 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:get/get.dart';
 import 'app_translations.dart';
-import 'gstg_ctrl.dart';
+import 'stg_ctrl.dart';
 
 class Globals extends GetxService {
-  //Globals get to => Get.find();
+  final db = Get.find<StgCtrl>();
+
   final appName = 'SuperLab';
   final appTitle = 'superlab';
-  final db = Get.find<GstgCtrl>();
   final _language = 'en_US'.obs;
   final RxInt _theme = 0.obs;
-  final RxString _concept = 'espresso'.obs;
+  final RxString _concept = 'mallardGreen'.obs;
 
   //getters
   String get language => _language.value;
@@ -58,22 +58,21 @@ class Globals extends GetxService {
     'rosewood': FlexScheme.rosewood,
     'Baseline': FlexScheme.materialBaseline,
     'verdunHemlock': FlexScheme.verdunHemlock,
-
-    //'hippieBlue': FlexScheme.hippieBlue,
-    // 'aquaBlue': FlexScheme.aquaBlue,
-    // 'brandBlue': FlexScheme.brandBlue,
-    // 'deepBlue': FlexScheme.deepBlue,
-    //'mandyRed': FlexScheme.mandyRed,
-    //'red': FlexScheme.red,
-    //'mango': FlexScheme.mango,
-    //'ebonyClay': FlexScheme.ebonyClay,
-    //'barossa': FlexScheme.barossa,
-    //'bahamaBlue': FlexScheme.bahamaBlue,
-    //'outerSpace': FlexScheme.outerSpace,
-    //'blueWhale': FlexScheme.blueWhale,
-    //'blumineBlue': FlexScheme.blumineBlue,
-    //'flutterDash': FlexScheme.flutterDash,
-    //'dellGenoa': FlexScheme.dellGenoa,
+    'hippieBlue': FlexScheme.hippieBlue,
+    'aquaBlue': FlexScheme.aquaBlue,
+    'brandBlue': FlexScheme.brandBlue,
+    'deepBlue': FlexScheme.deepBlue,
+    'mandyRed': FlexScheme.mandyRed,
+    'red': FlexScheme.red,
+    'mango': FlexScheme.mango,
+    'ebonyClay': FlexScheme.ebonyClay,
+    'barossa': FlexScheme.barossa,
+    'bahamaBlue': FlexScheme.bahamaBlue,
+    'outerSpace': FlexScheme.outerSpace,
+    'blueWhale': FlexScheme.blueWhale,
+    'blumineBlue': FlexScheme.blumineBlue,
+    'flutterDash': FlexScheme.flutterDash,
+    'dellGenoa': FlexScheme.dellGenoa,
   };
 
   setAttr(String key, value) {
@@ -81,7 +80,6 @@ class Globals extends GetxService {
       case 'language':
         _language.value = value;
         Get.updateLocale(AppTranslations.locale(value));
-
         break;
       case 'theme':
         _theme.value = value;
@@ -93,6 +91,19 @@ class Globals extends GetxService {
         print("setAttr: $key, $value");
         break;
     }
+    dbSave();
+  }
+
+  Future dbSave() async {
+    print("Globals dbSave");
+    Map<String, dynamic> data = {
+      'id': 'setting',
+      'language': _language.value,
+      'theme': _theme.value,
+      'concept': _concept.value,
+    };
+    String id = await db.upsert('setting', 'setting', data);
+    print("id: $id");
   }
 
   Future dbSync() async {

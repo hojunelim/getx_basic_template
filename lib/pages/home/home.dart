@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../commons/globals.dart';
 import '../../commons/utils.dart';
 import '../../widgets/admob_widget.dart';
+import '../../widgets/bounce_card.dart';
 import '../../widgets/page_wrap.dart';
 import 'home_controller.dart';
 
@@ -19,30 +20,25 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(G.appTitle),
-            Switch(
-                value: G.theme == 0,
-                onChanged: (bool value) {
-                  G.setAttr('theme', value ? 0 : 1);
-                }),
             Text("${G.concept} "),
           ],
         ),
         toolbar: [
           IconButton(
+            icon: Icon(G.theme == 0 ? Icons.nightlight_round : Icons.sunny),
+            onPressed: () {
+              G.setAttr('theme', G.theme == 0 ? 1 : 0);
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.change_circle),
             onPressed: () {
-              G.setAttr('concept', Utils.randomMapKey(G.conceptList));
+              G.setAttr('concept', $u.randomMapKey(G.conceptList));
             },
           ),
         ],
         child: Column(
           children: [
-            Card(
-              child: AdMobBanner(
-                adUnitId: G.adMobKeys['BannerAd'].toString(),
-                size: 'BANNER',
-              ),
-            ),
             Card(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,8 +57,28 @@ class Home extends StatelessWidget {
                       );
                     }).toList(),
                   ),
-                  Text('Hello'.trArgs()),
+                  Text('Hello'.tr),
                 ],
+              ),
+            ),
+            Card(
+              child: SizedBox(
+                height: 80,
+                child: AdMobBanner(
+                  adUnitId: G.adMobKeys['BannerAd'].toString(),
+                  size: 'BANNER',
+                ),
+              ),
+            ),
+            SizedBox.square(
+              dimension: 100,
+              child: BounceCard(
+                child: const Text("BounceCard"),
+                onPressed: () {
+                  Get.rawSnackbar(
+                    message: 'BounceCard',
+                  );
+                },
               ),
             ),
           ],

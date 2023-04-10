@@ -26,18 +26,10 @@ class PageWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = context.theme.brightness == Brightness.dark;
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Utils.colorBrightness(context.theme.colorScheme.background, 35),
-            context.theme.colorScheme.background,
-            Utils.colorBrightness(context.theme.colorScheme.background, -35),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
+      color: $u.colorBrightness(
+          context.theme.colorScheme.background, 70 * (isDark ? -1 : 1)),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,

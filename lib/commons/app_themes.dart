@@ -1,6 +1,7 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'globals.dart';
 
@@ -11,7 +12,7 @@ class AppThemes {
     FlexScheme scheme = G.conceptList[concep] ?? FlexScheme.materialBaseline;
     return FlexThemeData.light(
       scheme: scheme,
-      fontFamily: 'NotoSansKR',
+      fontFamily: GoogleFonts.sunflower().fontFamily,
       appBarElevation: 0,
       background: FlexColorScheme.light(scheme: scheme).primaryContainer,
       appBarStyle: FlexAppBarStyle.background,
@@ -26,7 +27,7 @@ class AppThemes {
     FlexScheme scheme = G.conceptList[concep] ?? FlexScheme.materialBaseline;
     return FlexThemeData.dark(
       scheme: scheme,
-      fontFamily: 'NotoSansKR',
+      fontFamily: GoogleFonts.sunflower().fontFamily,
       appBarElevation: 0,
       background: FlexColorScheme.dark(scheme: scheme).primaryContainer,
       appBarStyle: FlexAppBarStyle.background,
