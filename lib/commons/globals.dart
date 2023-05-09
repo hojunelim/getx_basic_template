@@ -1,6 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:get/get.dart';
-import 'app_translations.dart';
+import '../services/app_translations.dart';
 import 'stg_ctrl.dart';
 
 class Globals extends GetxService {
@@ -29,15 +29,19 @@ class Globals extends GetxService {
   }
 
   final Map<String, String> adMobKeysAndroid = {
-    'BannerAd': 'ca-app-pub-3940256099942544/6300978111',
-    'NativeAd': 'ca-app-pub-3940256099942544/2247696110',
-    'InterstitialAd': 'ca-app-pub-3940256099942544/1033173712',
+    'Banner': 'ca-app-pub-3940256099942544/6300978111',
+    'Native': 'ca-app-pub-3940256099942544/2247696110',
+    'Interstitial': 'ca-app-pub-3940256099942544/1033173712',
+    'Rewarded': 'ca-app-pub-3940256099942544/5224354917',
+    'RewardedInterstitial': 'ca-app-pub-3940256099942544/5354046379',
   };
 
   final Map<String, String> adMobKeysIos = {
-    'BannerAd': 'ca-app-pub-3940256099942544/2934735716',
-    'NativeAd': 'ca-app-pub-3940256099942544/2247696110',
-    'InterstitialAd': 'ca-app-pub-3940256099942544/4411468910',
+    'Banner': 'ca-app-pub-3940256099942544/2934735716',
+    'Native': 'ca-app-pub-3940256099942544/2247696110',
+    'Interstitial': 'ca-app-pub-3940256099942544/4411468910',
+    'Rewarded': 'ca-app-pub-3940256099942544/1712485313',
+    'RewardedInterstitial': 'ca-app-pub-3940256099942544/6978759866',
   };
 
   final Map<String, FlexScheme> conceptList = {

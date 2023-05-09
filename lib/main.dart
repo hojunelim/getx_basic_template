@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'commons/ad_service.dart';
-import 'commons/app_pages.dart';
-import 'commons/app_themes.dart';
-import 'commons/app_translations.dart';
 import 'commons/globals.dart';
 import 'commons/stg_ctrl.dart';
+
+import 'services/ad_service.dart';
+import 'services/app_pages.dart';
+import 'services/app_themes.dart';
+import 'services/app_translations.dart';
+
 import 'pages/home/home.dart';
 
 void main() async {

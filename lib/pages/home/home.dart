@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_basic_template/services/ad_service.dart';
 import '../../commons/globals.dart';
 import '../../commons/utils.dart';
-import '../../widgets/admob_widget.dart';
 import '../../widgets/bounce_card.dart';
 import '../../widgets/page_wrap.dart';
 import 'home_controller.dart';
 
 class Home extends StatelessWidget {
   final Globals G = Get.find<Globals>();
+  final AdService adService = Get.find<AdService>();
   Home({super.key});
 
   @override
@@ -62,22 +63,25 @@ class Home extends StatelessWidget {
               ),
             ),
             Card(
-              child: SizedBox(
-                height: 80,
-                child: AdMobBanner(
-                  adUnitId: G.adMobKeys['BannerAd'].toString(),
-                  size: 'BANNER',
-                ),
-              ),
+              child: Container(
+                  height: 80,
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: Obx(() {
+                    return (adService.bannerAds[G.adMobKeys['Banner']] != null)
+                        ? adService.showBanner(G.adMobKeys['Banner'])
+                        : const Text('ad');
+                  })),
             ),
             SizedBox.square(
               dimension: 100,
               child: BounceCard(
-                child: const Text("BounceCard"),
-                onPressed: () {
-                  Get.rawSnackbar(
-                    message: 'BounceCard',
-                  );
+                child: const Text("full screen ad"),
+                onPressed: () async {
+                  adService.showRewardedInterstitial(
+                      G.adMobKeys['RewardedInterstitial'] ?? '', () async {
+                    print(' rewardedInterstitial onUserEarnedReward');
+                  });
                 },
               ),
             ),

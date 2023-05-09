@@ -5,12 +5,12 @@ class BounceCard extends StatelessWidget {
   const BounceCard({
     Key? key,
     this.child,
-    this.color = 'primary',
+    this.color,
     this.onPressed,
   }) : super(key: key);
 
   final Widget? child;
-  final String? color;
+  final Color? color;
   final VoidCallback? onPressed;
 
   @override
@@ -23,7 +23,11 @@ class BounceCard extends StatelessWidget {
       },
       duration: const Duration(milliseconds: 100),
       child: Card(
-        clipBehavior: Clip.hardEdge,
+        //elevation: 0,
+        color: color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25),
+        ),
         child: Container(
           width: double.infinity,
           height: double.infinity,
