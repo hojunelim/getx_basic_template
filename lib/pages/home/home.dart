@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_basic_template/services/ad_service.dart';
 import '../../commons/globals.dart';
 import '../../commons/utils.dart';
+import '../../services/ad_service.dart';
 import '../../widgets/bounce_card.dart';
 import '../../widgets/page_wrap.dart';
 import 'home_controller.dart';
@@ -17,6 +17,8 @@ class Home extends StatelessWidget {
     HomeController _ = Get.put(HomeController());
 
     return PageWrap(
+        appbarLess: false,
+        isSlivers: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -68,23 +70,39 @@ class Home extends StatelessWidget {
                   width: double.infinity,
                   alignment: Alignment.center,
                   child: Obx(() {
-                    return (adService.bannerAds[G.adMobKeys['Banner']] != null)
-                        ? adService.showBanner(G.adMobKeys['Banner'])
+                    return (adService.bannerAds['home_banner'] != null)
+                        ? adService.showBanner('home_banner')
                         : const Text('ad');
                   })),
             ),
-            SizedBox.square(
-              dimension: 100,
-              child: BounceCard(
-                child: const Text("full screen ad"),
-                onPressed: () async {
-                  adService.showRewardedInterstitial(
-                      G.adMobKeys['RewardedInterstitial'] ?? '', () async {
-                    print(' rewardedInterstitial onUserEarnedReward');
-                  });
-                },
-              ),
+            BounceCard(
+              child: const Text("interstitial"),
+              onPressed: () async {
+                adService.showInterstitial(G.adMobs['interstitial']!, () async {
+                  print(' interstitial onUserEarnedReward');
+                });
+              },
             ),
+            BounceCard(
+              child: const Text("Rewarded"),
+              onPressed: () async {
+                adService.showRewarded(G.adMobs['rewarded']!, () async {
+                  print(' rewarded onUserEarnedReward');
+                });
+              },
+            ),
+            BounceCard(
+              child: const Text("rewarded_interstitial"),
+              onPressed: () async {
+                adService.showRewardedInterstitial(
+                    G.adMobs['rewarded_interstitial']!, () async {
+                  print(' rewarded_interstitial onUserEarnedReward');
+                });
+              },
+            ),
+            Container(
+              height: 3000,
+            )
           ],
         ));
   }

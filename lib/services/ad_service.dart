@@ -32,11 +32,12 @@ class AdService extends GetxController {
   }
 
   // admob 배너 광고 함수
-  loadBanner(String adUnitId, String size) async {
-    if (bannerAds[adUnitId] == null) {
-      bannerAds[adUnitId] = BannerAd(
-        size: bannerSize(size), //AdSize.banner,
-        adUnitId: adUnitId,
+  loadBanner(String key, Map<String, String>? admob) async {
+    if (admob == null) return;
+    if (bannerAds[key] == null) {
+      bannerAds[key] = BannerAd(
+        size: bannerSize(admob['size'].toString()), //AdSize.banner,
+        adUnitId: admob['key'].toString(),
         request: const AdRequest(),
         listener: BannerAdListener(
           onAdLoaded: (Ad ad) {
@@ -44,25 +45,26 @@ class AdService extends GetxController {
           },
           onAdFailedToLoad: (Ad ad, LoadAdError error) {
             print('$BannerAd failedToLoad: $error');
-            bannerAds.remove(adUnitId);
+            bannerAds.remove(key);
           },
           onAdOpened: (Ad ad) => print('$BannerAd onAdOpened.'),
           onAdClosed: (Ad ad) => print('$BannerAd onAdClosed.'),
           onAdImpression: (Ad ad) => print('$BannerAd impression occurred.'),
         ),
       );
-      await bannerAds[adUnitId]!.load();
+      await bannerAds[key]!.load();
     }
   }
 
-  Widget showBanner(adUnitId) {
-    return AdWidget(ad: bannerAds[adUnitId]!);
+  Widget showBanner(String bannerName) {
+    return AdWidget(ad: bannerAds[bannerName]!);
   }
 
   //전면광고 보여주기
-  void showInterstitial(String adUnitId, Function callback) async {
+  void showInterstitial(Map<String, String>? admob, Function callback) async {
+    if (admob == null) return;
     await InterstitialAd.load(
-        adUnitId: adUnitId,
+        adUnitId: admob['key'].toString(),
         request: const AdRequest(),
         adLoadCallback: InterstitialAdLoadCallback(
           onAdLoaded: (InterstitialAd ad) {
@@ -76,9 +78,10 @@ class AdService extends GetxController {
   }
 
   // admob 보상형 전면 광고 함수
-  void showRewarded(String adUnitId, Function callback) async {
+  void showRewarded(Map<String, String>? admob, Function callback) async {
+    if (admob == null) return;
     await RewardedAd.load(
-      adUnitId: adUnitId,
+      adUnitId: admob['key'].toString(),
       request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (RewardedAd ad) {
@@ -106,9 +109,11 @@ class AdService extends GetxController {
     );
   }
 
-  void showRewardedInterstitial(String adUnitId, Function callback) async {
+  void showRewardedInterstitial(
+      Map<String, String>? admob, Function callback) async {
+    if (admob == null) return;
     await RewardedInterstitialAd.load(
-      adUnitId: adUnitId,
+      adUnitId: admob['key'].toString(),
       request: const AdRequest(),
       rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
         onAdLoaded: (RewardedInterstitialAd ad) {

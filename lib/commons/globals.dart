@@ -18,30 +18,61 @@ class Globals extends GetxService {
   String get concept => _concept.value;
   get languageList => AppTranslations.languageCodes;
 
-  Map<String, String> get adMobKeys {
+  Map<String, Map<String, String>> get adMobs {
     if (GetPlatform.isAndroid) {
-      return adMobKeysAndroid;
+      return adMobsAndroid;
     } else if (GetPlatform.isIOS) {
-      return adMobKeysIos;
+      return adMobsIos;
     } else {
       return {};
     }
   }
 
-  final Map<String, String> adMobKeysAndroid = {
-    'Banner': 'ca-app-pub-3940256099942544/6300978111',
-    'Native': 'ca-app-pub-3940256099942544/2247696110',
-    'Interstitial': 'ca-app-pub-3940256099942544/1033173712',
-    'Rewarded': 'ca-app-pub-3940256099942544/5224354917',
-    'RewardedInterstitial': 'ca-app-pub-3940256099942544/5354046379',
+  final Map<String, Map<String, String>> adMobsAndroid = {
+    'home_banner': {
+      'type': 'banner',
+      'size': 'BANNER',
+      'key': 'ca-app-pub-3940256099942544/6300978111'
+    },
+    'native': {
+      'type': 'native',
+      'key': 'ca-app-pub-3940256099942544/2247696110'
+    },
+    'interstitial': {
+      'type': 'interstitial',
+      'key': 'ca-app-pub-3940256099942544/1033173712'
+    },
+    'rewarded': {
+      'type': 'rewarded',
+      'key': 'ca-app-pub-3940256099942544/5224354917'
+    },
+    'rewarded_interstitial': {
+      'type': 'rewardedInterstitial',
+      'key': 'ca-app-pub-3940256099942544/5354046379'
+    },
   };
 
-  final Map<String, String> adMobKeysIos = {
-    'Banner': 'ca-app-pub-3940256099942544/2934735716',
-    'Native': 'ca-app-pub-3940256099942544/2247696110',
-    'Interstitial': 'ca-app-pub-3940256099942544/4411468910',
-    'Rewarded': 'ca-app-pub-3940256099942544/1712485313',
-    'RewardedInterstitial': 'ca-app-pub-3940256099942544/6978759866',
+  final Map<String, Map<String, String>> adMobsIos = {
+    'banner': {
+      'type': 'banner',
+      'key': 'ca-app-pub-3940256099942544/2934735716'
+    },
+    'native': {
+      'type': 'native',
+      'key': 'ca-app-pub-3940256099942544/2247696110'
+    },
+    'interstitial': {
+      'type': 'interstitial',
+      'key': 'ca-app-pub-3940256099942544/4411468910'
+    },
+    'rewarded': {
+      'type': 'rewarded',
+      'key': 'ca-app-pub-3940256099942544/1712485313'
+    },
+    'rewarded_interstitial': {
+      'type': 'rewardedInterstitial',
+      'key': 'ca-app-pub-3940256099942544/6978759866'
+    },
   };
 
   final Map<String, FlexScheme> conceptList = {

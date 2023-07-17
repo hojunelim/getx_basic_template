@@ -6,15 +6,22 @@ import 'page_bottombar.dart';
 
 class PageWrap extends StatelessWidget {
   const PageWrap({
-    Key? key,
+    super.key,
     required this.title,
     required this.child,
     this.toolbar,
     this.tabs,
-    this.floatingActionButton,
     this.appbarLess = false,
     this.btLess = false,
-  }) : super(key: key);
+    this.isSlivers = false,
+    this.sliverOption = const {
+      'pinned': true,
+      'snap': true,
+      'floating': true,
+      'height': 160,
+      'background': null,
+    },
+  });
 
   final Widget title;
   final Widget child;
@@ -22,7 +29,8 @@ class PageWrap extends StatelessWidget {
   final List<Widget>? tabs;
   final bool appbarLess;
   final bool btLess;
-  final FloatingActionButton? floatingActionButton;
+  final bool isSlivers;
+  final Map<String, dynamic>? sliverOption;
 
   @override
   Widget build(BuildContext context) {
@@ -40,15 +48,38 @@ class PageWrap extends StatelessWidget {
                 toolbar: toolbar,
                 tabs: tabs,
               ),
-        body: Container(
-            padding: const EdgeInsets.only(
-              left: 10,
-              right: 10,
-              bottom: 10,
-            ),
-            child: child),
+        body: isSlivers ? sliverApp(context) : basicApp(context),
         bottomNavigationBar: btLess ? null : const PageBottombar(),
       ),
     );
+  }
+
+  sliverApp(BuildContext context) {
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverAppBar(
+          pinned: true,
+          snap: true,
+          floating: true,
+          expandedHeight: sliverOption?['height'].toDouble() ?? 160,
+          flexibleSpace: FlexibleSpaceBar(
+            title: title,
+            titlePadding: EdgeInsets.zero,
+            background: sliverOption?['background'],
+          ),
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return child;
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  basicApp(BuildContext context) {
+    return Container(child: child);
   }
 }

@@ -14,6 +14,6 @@ class HomeController extends GetxController {
   }
 
   ctrlInit() async {
-    adService.loadBanner(G.adMobKeys['Banner']!, 'BANNER');
+    adService.loadBanner('home_banner', G.adMobs['home_banner']);
   }
 }
