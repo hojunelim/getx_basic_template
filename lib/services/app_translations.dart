@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../lang/lang_en.dart';
-import '../lang/lang_fr.dart';
-import '../lang/lang_ko.dart';
-import '../lang/lang_ja.dart';
-import '../lang/lang_zh.dart';
+import '/lang/lang_en.dart';
+import '/lang/lang_fr.dart';
+import '/lang/lang_ko.dart';
+import '/lang/lang_ja.dart';
+import '/lang/lang_zh.dart';
 
 class AppTranslations extends Translations {
   static get languageCodes {

@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-import '../../commons/globals.dart';
-import '../../services/ad_service.dart';
+import '/commons/globals.dart';
+import '/services/ad_service.dart';
 
-class HomeController extends GetxController {
+class Controller extends GetxController {
   final G = Get.find<Globals>();
   final adService = Get.find<AdService>();
 

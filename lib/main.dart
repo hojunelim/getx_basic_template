@@ -10,7 +10,7 @@ import 'services/app_pages.dart';
 import 'services/app_themes.dart';
 import 'services/app_translations.dart';
 
-import 'pages/home/home.dart';
+import 'pages/home/index.dart' as home;
 
 void main() async {
   await initService();
@@ -21,7 +21,7 @@ void main() async {
         title: G.appTitle,
         debugShowCheckedModeBanner: false,
         getPages: AppPages.routes,
-        home: Home(),
+        home: home.Index(),
         theme: appTheme.lightTheme(G.concept),
         darkTheme: appTheme.darkTheme(G.concept),
         themeMode: G.theme == 1 ? ThemeMode.light : ThemeMode.dark,

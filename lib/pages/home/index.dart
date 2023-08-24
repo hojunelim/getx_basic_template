@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../commons/globals.dart';
-import '../../commons/utils.dart';
-import '../../services/ad_service.dart';
-import '../../widgets/bounce_card.dart';
-import '../../widgets/page_wrap.dart';
-import 'home_controller.dart';
+import '/commons/globals.dart';
+import '/commons/utils.dart';
+import '/services/ad_service.dart';
+import '/widgets/bounce_card.dart';
+import '/widgets/page_wrap.dart';
+import 'controller.dart';
+import 'binding.dart' as binding;
 
-class Home extends StatelessWidget {
+class Binding extends binding.Binding {}
+
+class Index extends StatelessWidget {
   final Globals G = Get.find<Globals>();
   final AdService adService = Get.find<AdService>();
-  Home({super.key});
+  Index({super.key});
 
   @override
   Widget build(BuildContext context) {
-    HomeController _ = Get.put(HomeController());
+    Controller _ = Get.put(Controller());
 
     return PageWrap(
         appbarLess: false,

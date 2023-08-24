@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../commons/utils.dart';
+import '/commons/utils.dart';
 import 'page_appbar.dart';
 import 'page_bottombar.dart';
 

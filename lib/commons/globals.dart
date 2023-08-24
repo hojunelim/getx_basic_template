@@ -1,6 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:get/get.dart';
-import '../services/app_translations.dart';
+import '/services/app_translations.dart';
 import 'stg_ctrl.dart';
 
 class Globals extends GetxService {

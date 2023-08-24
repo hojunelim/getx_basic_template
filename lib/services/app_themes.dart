@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../commons/globals.dart';
+import '/commons/globals.dart';
 
 class AppThemes {
   final G = Get.find<Globals>();
