@@ -6,7 +6,7 @@ abstract class AppPages {
     GetPage(
       name: '/home',
       page: () => home.Index(),
-      binding: home.Binding(),
+      //binding: home.Binding(),
     ),
   ];
 }
