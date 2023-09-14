@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '/commons/globals.dart';
 import '/services/ad_service.dart';
 
-class Controller extends GetxController {
+class HomeController extends GetxController {
   final G = Get.find<Globals>();
   final adService = Get.find<AdService>();
 

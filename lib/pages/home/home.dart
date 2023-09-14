@@ -5,19 +5,16 @@ import '/commons/utils.dart';
 import '/services/ad_service.dart';
 import '/widgets/bounce_card.dart';
 import '/widgets/page_wrap.dart';
-import 'controller.dart';
-import 'binding.dart' as binding;
+import 'home_controller.dart';
 
-class Binding extends binding.Binding {}
-
-class Index extends StatelessWidget {
+class Home extends StatelessWidget {
   final Globals G = Get.find<Globals>();
   final AdService adService = Get.find<AdService>();
-  Index({super.key});
+  Home({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Controller _ = Get.put(Controller());
+    HomeController _ = Get.put(HomeController());
 
     return PageWrap(
         appbarLess: false,

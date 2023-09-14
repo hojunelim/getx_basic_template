@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import '/pages/home/index.dart' as home;
+import '/pages/home/home.dart';
 
 abstract class AppPages {
   static final routes = [
     GetPage(
       name: '/home',
-      page: () => home.Index(),
+      page: () => Home(),
       //binding: home.Binding(),
     ),
   ];
